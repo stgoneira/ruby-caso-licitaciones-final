@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :categorias
+  root 'sites#index'  
+
   devise_for :licitantes
   devise_for :empresas
-  devise_for :administradores
-  root 'sites#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :administradores  
+
+  get "/licitacion/:id", to: "sites#licitacion", as: :licitacion 
+  post "/postular/licitacion/:id", to: "sites#postular", as: :postular 
 end

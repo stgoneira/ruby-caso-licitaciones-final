@@ -1,0 +1,18 @@
+<%= content_for :title, @licitacion.titulo %>
+
+<h1><%= yield :title %></h1>
+
+<p><%=@licitacion.descripcion %></p>
+
+
+<%= form_with url: postular_path, method: :post do |form| %>
+    <%= form.label :propuesta, "Propuesta:" %>
+    <%= form.text_field :propuesta %>
+    <% @postulacion.errors.full_messages_for(:propuesta).each do |message| %>
+      <div class="text-danger"><%= message %></div>
+    <% end %>
+
+    <br />
+    <br />
+    <%= form.submit "Postular", class: "btn btn-primary" %>
+<% end %>

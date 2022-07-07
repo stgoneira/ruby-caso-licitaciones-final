@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_004406) do
+ActiveRecord::Schema.define(version: 2022_07_06_203845) do
 
-  create_table "administradores", charset: "utf8mb4", force: :cascade do |t|
+  create_table "administradores", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 2022_07_06_004406) do
     t.index ["reset_password_token"], name: "index_administradores_on_reset_password_token", unique: true
   end
 
-  create_table "categorias", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre"
+  create_table "categorias", force: :cascade do |t|
+    t.string "nombre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "empresas", charset: "utf8mb4", force: :cascade do |t|
+  create_table "empresas", force: :cascade do |t|
     t.string "rut", null: false
     t.string "razon_social", null: false
     t.string "email", default: "", null: false
@@ -45,13 +45,13 @@ ActiveRecord::Schema.define(version: 2022_07_06_004406) do
     t.index ["rut"], name: "index_empresas_on_rut", unique: true
   end
 
-  create_table "licitaciones", charset: "utf8mb4", force: :cascade do |t|
+  create_table "licitaciones", force: :cascade do |t|
     t.string "titulo", null: false
     t.string "descripcion", null: false
     t.integer "presupuesto", null: false
-    t.bigint "categoria_id", null: false
-    t.bigint "licitante_id", null: false
-    t.bigint "region_id", null: false
+    t.integer "categoria_id", null: false
+    t.integer "licitante_id", null: false
+    t.integer "region_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["categoria_id"], name: "index_licitaciones_on_categoria_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_07_06_004406) do
     t.index ["region_id"], name: "index_licitaciones_on_region_id"
   end
 
-  create_table "licitantes", charset: "utf8mb4", force: :cascade do |t|
+  create_table "licitantes", force: :cascade do |t|
     t.string "rut", null: false
     t.string "razon_social", null: false
     t.string "email", default: "", null: false
@@ -74,18 +74,18 @@ ActiveRecord::Schema.define(version: 2022_07_06_004406) do
     t.index ["rut"], name: "index_licitantes_on_rut", unique: true
   end
 
-  create_table "postulaciones", charset: "utf8mb4", force: :cascade do |t|
+  create_table "postulaciones", force: :cascade do |t|
     t.string "propuesta", null: false
-    t.bigint "empresa_id", null: false
-    t.bigint "licitacion_id", null: false
+    t.integer "empresa_id", null: false
+    t.integer "licitacion_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["empresa_id"], name: "index_postulaciones_on_empresa_id"
     t.index ["licitacion_id"], name: "index_postulaciones_on_licitacion_id"
   end
 
-  create_table "regiones", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nombre"
+  create_table "regiones", force: :cascade do |t|
+    t.string "nombre", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
